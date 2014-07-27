@@ -1,0 +1,101 @@
+
+ <?php
+ // module/Album/view/album/album/index.phtml:
+
+ $title = 'Usuarios';
+ $subtitle= 'Usuarios actuales';
+ $this->headTitle($title);
+ ?>
+ 
+ 
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+                        <p>Lista de Usuarios actualmente registrados. Eliga editar o Eliminar</p>
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Buscar...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+        <hr>
+        <a class="btn btn-success btn-sm" href="<?php echo $this->url('admin-usuario', array('action'=>'agregar'));?>">Agregar nuevo usuario</a>
+                    </div>
+
+      <!-- Table -->
+                    <div class="table-responsive">
+          
+                <table class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Rut</th>
+                            <th>Supervisor ID</th>
+                            <th>Supervisor Rut</th>
+                            <th>Correo</th>
+                            <th>Tipo</th>
+                            <th>Fono</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <?php foreach ($this->paginator as $m) : ?>
+                            <tr>
+
+                                <td><?php echo $this->escapeHtml($m->id_usuario);?></td>
+                                <td><?php echo $this->escapeHtml($m->nombre);?></td>
+                                <td><?php echo $this->escapeHtml($m->apellido);?></td>
+                                <td><?php echo $this->escapeHtml($m->rut);?></td>
+                                <td><?php echo $this->escapeHtml($m->supervisor_id);?></td>
+                                <td><?php echo $this->escapeHtml($m->supervisor_rut);?></td>
+                                <td><?php echo $this->escapeHtml($m->correo);?></td>
+                                <td><?php echo $this->escapeHtml($m->tipo);?></td>
+                                <td><?php echo $this->escapeHtml($m->fono);?></td>
+                               
+                                <td>
+                                    <a class="btn btn-warning btn-xs" href="<?php echo $this->url('admin-usuario',
+                                        array('action'=>'editar', 'id' => $m->id_usuario));?>">Editar</a>
+                                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url('admin-usuario',
+                                        array('action'=>'borrar', 'id' => $m->id_usuario));?>">Borrar</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                    </tbody>
+                 </table>        
+                        <?php echo $this->paginationControl(
+                                    // the paginator object
+                                    $this->paginator,
+                                    // the scrolling style
+                                    'sliding',
+                                    // the partial to use to render the control
+                                    array('partial/paginator.phtml', 'Admin'),
+                                    // the route to link to when a user clicks a control link
+                                    array(
+                                        'route' => 'admin-usuario'
+                                    )
+                                );
+                            ?> 
+                    </div>
+                </div>
+        </div>
+    </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+                                <!-- /.col-lg-6 (nested) -->
+</div>     
+            
+            
+            
+      
+ 

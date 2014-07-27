@@ -1,0 +1,73 @@
+ <?php
+
+
+ $title = 'Bodegas';
+ $subtitle= 'Agregar Bodegas';
+ $this->headTitle($title);
+ ?>
+
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+
+
+<!-- CONTENIDO DE CLIENTES -->                        
+                        
+<?php
+ $form->setAttribute('action', $this->url('admin-bodega', array('action' => 'agregar')));
+ $form->setAttribute('role','form');
+ $form->setAttribute('class','form-horizontal');
+ $form->prepare();
+ echo $this->form()->openTag($form);
+ ?>                        
+
+  <div class="form-group">
+    <label for="nro_bodega" class="col-sm-2 control-label">Numero de bodega</label>
+    <div class="col-sm-10">
+      <?php
+    
+    $nro_bodega = $form->get('nro_bodega');
+    echo $this->formInput($nro_bodega);
+    echo $this->formElementErrors($nro_bodega);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="descripcion" class="col-sm-2 control-label">Descripcion</label>
+    <div class="col-sm-10">
+      <?php
+    $descripcion = $form->get('descripcion');
+    echo $this->formInput($descripcion);
+    echo $this->formElementErrors($descripcion);
+    ?>
+    </div>
+  </div>
+  
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php
+    $submit = $form->get('submit');
+    echo $this->formInput($submit);
+    echo $this->formElementErrors($submit);
+    ?>
+    </div>
+  </div>
+<?php echo $this->form()->closeTag($form); ?>
+
+
+
+<!-- CONTENIDO DE CLIENTES -->     
+
+</div>
+</div>
+</div>
+</div>
+</div>     

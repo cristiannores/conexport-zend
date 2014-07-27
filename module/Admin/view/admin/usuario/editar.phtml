@@ -1,0 +1,151 @@
+<?php
+
+
+ $title = 'Usuarios';
+ $subtitle= 'Editar Usuarios';
+ $this->headTitle($title);
+ ?>
+
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+
+
+<!-- CONTENIDO DE CLIENTES -->                        
+                        
+<?php
+ $form->setAttribute('action', $this->url('admin-usuario', array(
+     'action' => 'agregar',
+     'id' => $this->id)));
+ $form->setAttribute('role','form');
+ $form->setAttribute('class','form-horizontal');
+ $form->prepare();
+ echo $this->form()->openTag($form);
+ ?>                        
+
+  <div class="form-group">
+    <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+    <div class="col-sm-10">
+      <?php
+     
+    echo $this->formHidden($form->get('id_usuario'));
+    echo $this->formHidden($form->get('supervisor_rut'));
+    
+    $nombre = $form->get('nombre');
+    echo $this->formInput($nombre);
+    echo $this->formElementErrors($nombre);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="apellido" class="col-sm-2 control-label">Apellido</label>
+    <div class="col-sm-10">
+      <?php
+    $apellido = $form->get('apellido');
+    echo $this->formInput($apellido);
+    echo $this->formElementErrors($apellido);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="rut" class="col-sm-2 control-label">Rut</label>
+    <div class="col-sm-10">
+      <?php
+    $rut = $form->get('rut');
+    echo $this->formInput($rut);
+    echo $this->formElementErrors($rut);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="supervisor" class="col-sm-2 control-label">Supervisor</label>
+    <div class="col-sm-10">
+      <?php
+    $supervisor = $form->get('supervisor_id');
+    echo $this->formSelect($supervisor);
+    echo $this->formElementErrors($supervisor);
+    ?>
+    </div>
+  </div>   
+  <div class="form-group">
+    <label for="correo" class="col-sm-2 control-label">Correo</label>
+    <div class="col-sm-10">
+      <?php
+    $correo = $form->get('correo');
+    echo $this->formInput($correo);
+    echo $this->formElementErrors($correo);
+    ?>
+    </div>
+  </div>  
+  <div class="form-group">
+    <label for="tipo" class="col-sm-2 control-label">Tipo</label>
+    <div class="col-sm-10">
+      <?php
+    $tipo = $form->get('tipo');
+    echo $this->formSelect($tipo);
+    echo $this->formElementErrors($tipo);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fono" class="col-sm-2 control-label">Telefono</label>
+    <div class="col-sm-10">
+      <?php
+    $fono = $form->get('fono');
+    echo $this->formInput($fono);
+    echo $this->formElementErrors($fono);
+    ?>
+    </div>
+  </div>  
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">Contraseña</label>
+    <div class="col-sm-10">
+      <?php
+    $password = $form->get('password');
+    echo $this->formInput($password);
+    echo $this->formElementErrors($password);
+    ?>
+    </div>
+  </div>  
+<div class="form-group">
+    <label for="password2" class="col-sm-2 control-label">Repita la contraseña</label>
+    <div class="col-sm-10">
+      <?php
+    $password2 = $form->get('password2');
+    echo $this->formInput($password2);
+    echo $this->formElementErrors($password2);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+<?php  echo $recaptcha->getHTML();?>
+</div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php
+    $submit = $form->get('submit');
+    echo $this->formInput($submit);
+    echo $this->formElementErrors($submit);
+    ?>
+    </div>
+  </div>
+<?php echo $this->form()->openTag($form); ?>
+
+
+
+<!-- CONTENIDO DE CLIENTES -->     
+
+</div>
+</div>
+</div>
+</div>
+</div>     

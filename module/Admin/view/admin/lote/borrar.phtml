@@ -1,0 +1,44 @@
+
+ <?php
+ // module/Album/view/album/album/index.phtml:
+
+ $title = 'Inspeccion Lote';
+ $subtitle= 'Borrar Inspeccion Lote';
+ $this->headTitle($title);
+ ?>
+ 
+ 
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+
+ <p>Estas seguro que deseas borrar  la inspeccion con codigo sap : 
+     '<?php echo $this->escapeHtml($lote->codigo_sap); ?>' y numero de entrega:  
+     '<?php echo $this->escapeHtml($lote->numero_entrega); ?>'?
+ </p>
+ <?php
+ $url = $this->url('admin-lote', array(
+     'action' => 'borrar',
+     'id'     => $this->id,
+ ));
+ ?>
+ <form action="<?php echo $url; ?>" method="post">
+ <div>
+     <input type="hidden" name="id" value="<?php echo (int) $lote->id_lote; ?>" />
+     <input type="submit" name="del" value="Yes" />
+     <input type="submit" name="del" value="No" />
+ </div>
+ </form>
+ 
+</div>
+</div>
+</div>
+</div>
+</div>  

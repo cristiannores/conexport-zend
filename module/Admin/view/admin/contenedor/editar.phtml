@@ -1,0 +1,293 @@
+<?php
+
+
+ $title = 'Inspeccion Contenedores';
+ $subtitle= 'Editar Inspeccion Contenedores';
+ $this->headTitle($title);
+ ?>
+
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    
+
+        
+  
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+                     
+        
+                    
+
+
+<!-- CONTENIDO DE CLIENTES -->                        
+                        
+<?php
+ $form->setAttribute('action', $this->url('admin-contenedor', array('action' => 'agregar')));
+ $form->setAttribute('role','form');
+ $form->setAttribute('class','form-horizontal');
+ $form->prepare();
+ echo $this->form()->openTag($form);
+ ?>   
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-md-10">
+           Inspector : <?php echo " Cristian Nores";?>
+          
+        </div>
+        <div class="col-md-2">
+            <?php date_default_timezone_set ('America/Santiago');?>
+            <?php echo "Fecha: ";?>
+            <?php echo date('d-m-Y h:i:s');?>
+            
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-6">
+           <div class="form-group">
+                <label for="turno" class="col-sm-3 control-label">Turno</label>
+                <div class="col-sm-5">
+                  <?php
+                  
+                echo $this->formHidden($form->get('id_cont'));
+                $turno = $form->get('turno');
+                echo $this->formSelect($turno);
+                echo $this->formElementErrors($turno);
+                ?>
+                </div>
+           </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="tipo" class="col-sm-3 control-label">Tipo de inspeccion</label>
+                <div class="col-sm-5">
+                    <?php
+                        $tipo_inspeccion = $form->get('tipo');
+                        echo $this->formSelect($tipo_inspeccion);
+                        echo $this->formElementErrors($tipo_inspeccion);
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+ <div class="form-group">
+    <label for="nro_bodega" class="col-sm-2 control-label">Bodega </label>
+    <div class="col-sm-10">
+      <?php
+    $bodega = $form->get('nro_bodega');
+    echo $this->formSelect($bodega);
+    echo $this->formElementErrors($bodega);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="id_cliente" class="col-sm-2 control-label">Exportador</label>
+    <div class="col-sm-10">
+      <?php
+    $cliente = $form->get('id_cliente');
+    echo $this->formSelect($cliente);
+    echo $this->formElementErrors($cliente);
+    ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="producto" class="col-sm-2 control-label">Producto</label>
+    <div class="col-sm-10">
+      <?php
+    $material = $form->get('producto');
+    echo $this->formSelect($material);
+    echo $this->formElementErrors($material);
+    ?>
+    </div>
+  </div>
+   <div class="form-group">
+    <label for="nave" class="col-sm-2 control-label">Nave</label>
+    <div class="col-sm-10">
+      <?php
+    $nave = $form->get('nave');
+    echo $this->formSelect($nave);
+    echo $this->formElementErrors($nave);
+    ?>
+    </div>
+  </div>
+<div class="form-group">
+    <label for="codigo_contenedor" class="col-sm-2 control-label">ID Contenedor</label>
+    <div class="col-sm-10">
+      <?php
+    $contenedor = $form->get('codigo_contenedor');
+    echo $this->formInput($contenedor);
+    echo $this->formElementErrors($contenedor);
+    ?>
+    </div>
+  </div>
+<div class="form-group">
+    <label for="destino" class="col-sm-2 control-label">Destino</label>
+    <div class="col-sm-10">
+      <?php
+    $destino = $form->get('destino');
+    echo $this->formInput($destino);
+    echo $this->formElementErrors($destino);
+    ?>
+    </div>
+  </div>
+<div class="form-group">
+    <label for="numero_entrega" class="col-sm-2 control-label">Numero de entrega</label>
+    <div class="col-sm-10">
+      <?php
+    $numero_entrega = $form->get('numero_entrega');
+    echo $this->formInput($numero_entrega);
+    echo $this->formElementErrors($numero_entrega);
+    ?>
+    </div>
+  </div>
+<div class="form-group">
+    <label for="numero_lote" class="col-sm-2 control-label">Lote</label>
+    <div class="col-sm-10">
+      <?php
+    $lote = $form->get('numero_lote');
+    echo $this->formInput($lote);
+    echo $this->formElementErrors($lote);
+    ?>
+    </div>
+  </div>
+
+<div class="consolidacion form-group" id="consolidacion">
+    <label for="pieza_danada" class="col-sm-2 control-label">Daños</label>
+    <div class="col-sm-10">
+        <?php
+      $danos = $form->get('pieza_danada');
+      echo $this->formInput($danos);
+      echo $this->formElementErrors($danos);
+      ?>
+  </div>    
+</div>
+
+<div class="consolidacion form-group" id="consolidacion">
+    <label for="pieza_paquete" class="col-sm-2 control-label">Piezas totales</label>
+    <div class="col-sm-10">
+      <?php
+        $piezas_totales = $form->get('pieza_paquete');
+        echo $this->formInput($piezas_totales);
+        echo $this->formElementErrors($piezas_totales);
+      ?>
+    </div>     
+</div>
+<fieldset class="desconsolidacion scheduler-border" id="desconsolidacion">
+    <legend class="scheduler-border">Daños implementacion</legend>
+<div class="form-group">
+    <label for="imp_o_zcho" class="col-sm-2 control-label">Origen zuncho</label>
+    <div class="col-sm-10">
+      <?php
+        $imp_o_zcho = $form->get('imp_o_zcho');
+        echo $this->formInput($imp_o_zcho);
+        echo $this->formElementErrors($imp_o_zcho);
+      ?>
+    </div>    
+</div>
+<div class="form-group">
+    <label for="imp_o_taco" class="col-sm-2 control-label">Origen taco</label>
+    <div class="col-sm-10">
+      <?php
+        $imp_o_taco = $form->get('imp_o_taco');
+        echo $this->formInput($imp_o_taco);
+        echo $this->formElementErrors($imp_o_taco);
+      ?>
+    </div>    
+</div>
+<div class="form-group">
+    <label for="imp_d_zcho" class="col-sm-2 control-label">Destino zuncho</label>
+    <div class="col-sm-10">
+      <?php
+        $imp_o_zcho = $form->get('imp_d_zcho');
+        echo $this->formInput($imp_o_zcho);
+        echo $this->formElementErrors($imp_o_zcho);
+      ?>
+    </div>    
+</div>
+<div class="form-group">
+    <label for="imp_d_taco" class="col-sm-2 control-label">Destino taco</label>
+    <div class="col-sm-10">
+      <?php
+        $imp_o_taco = $form->get('imp_d_taco');
+        echo $this->formInput($imp_o_taco);
+        echo $this->formElementErrors($imp_o_taco);
+      ?>
+    </div>    
+</div>
+</fieldset>
+<fieldset class="desconsolidacion scheduler-border" id="desconsolidacion"> 
+    <legend class="scheduler-border">Daños piezas</legend>
+<div class="form-group">
+    <label for="imp_piezas_o" class="col-sm-2 control-label">Daño origen</label>
+    <div class="col-sm-10">
+      <?php
+        $imp_piezas_o = $form->get('imp_piezas_o');
+        echo $this->formInput($imp_piezas_o);
+        echo $this->formElementErrors($imp_piezas_o);
+      ?>
+    </div>    
+</div>
+<div class="form-group">
+    <label for="imp_piezas_d" class="col-sm-2 control-label">Daño destino</label>
+    <div class="col-sm-10">
+      <?php
+        $imp_piezas_d = $form->get('imp_piezas_d');
+        echo $this->formInput($imp_piezas_d);
+        echo $this->formElementErrors($imp_piezas_d);
+      ?>
+    </div>    
+</div>
+</fieldset>
+<div class="form-group">
+    <label for="observaciones" class="col-sm-2 control-label">Observaciones</label>
+    <div class="col-sm-10">
+      <?php
+    $observaciones = $form->get('observaciones');
+    echo $this->formInput($observaciones);
+    echo $this->formElementErrors($observaciones);
+    ?>
+</div>  
+</div>
+<div class="form-group">
+    <label for="imagen" class="col-sm-2 control-label">Imagenes</label>
+    <div class="col-sm-10">
+      <?php
+    $imagen = $form->get('image-file');
+    echo $this->formInput($imagen);
+    echo $this->formElementErrors($imagen);
+    ?>
+</div> 
+    
+
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php
+    $submit = $form->get('submit');
+    echo $this->formInput($submit);
+    echo $this->formElementErrors($submit);
+    ?>
+    </div>
+  </div>
+<?php echo $this->form()->closeTag($form); ?>
+
+
+
+<!-- CONTENIDO DE CLIENTES -->     
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>     

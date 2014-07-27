@@ -1,0 +1,327 @@
+<?php
+//var_dump($this->usuario);
+foreach ($this->bodega as $u) :
+    $bodegaNombre[] = "'$u->bodega'";
+    $bodegaCantidad[] = $u->cantidad;
+endforeach;
+
+foreach ($this->cliente as $u) :
+    $clienteNombre[] = "'$u->cliente'";
+    $clienteCantidad[] = $u->cantidad;
+endforeach;
+foreach ($this->material as $u) :
+    $materialNombre[] = "'$u->material'";
+    $materialCantidad[] = $u->cantidad;
+endforeach;
+
+foreach ($this->nave as $u) :
+    $naveNombre[] = "'$u->nave'";
+    $naveCantidad[] = $u->cantidad;
+endforeach;
+
+foreach ($this->inspector as $u) :
+    $inspectorNombre[] = "'$u->inspector'";
+    $inspectorCantidad[] = $u->cantidad;
+endforeach;
+
+foreach ($this->inspeccion as $u) :
+    $inspeccionNombre[] = "'$u->inspeccion'";
+    $inspeccionCantidad[] = $u->cantidad;
+endforeach;
+?>
+
+<script>
+    
+       $(function () {
+           Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function(color) {
+		    return {
+		        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+		        stops: [
+		            [0, color],
+		            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+		        ]
+		    };
+		});
+           
+    Highcharts.setOptions({
+        credits: {
+            enabled: false
+        },
+        chart: {
+            type: 'column',
+            margin: 75,
+            options3d: {
+				enabled: true,
+                alpha: 10,
+                beta: 25,
+                depth: 70
+            }
+        },
+        colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+        plotOptions: {
+            column: {
+                depth: 25
+            },
+             series: {
+                colorByPoint: true
+            }
+        },
+       
+        yAxis: {
+            opposite: true
+        },
+      });  
+      
+      // default options
+  var options = {
+   
+
+     yAxis: {
+                min: 0,
+                title: {
+                    text: 'Valores (unidades)'
+                }
+            },
+  };
+        // Clientes
+    var chart1Options = {
+        chart: {
+          renderTo: 'clienteGrafico'
+        },
+        title: {
+            text: 'Cantidad de inspecciones realizadas por cliente'
+        },
+         xAxis: {
+            categories: [ <?php echo join($clienteNombre, ',') ?>]
+        },
+        series: [
+    
+            {             
+            name: 'Inspecciones realizadas',
+            data: [ <?php echo join($clienteCantidad, ',') ?>]
+           }
+    ]
+    };
+    chart1Options = jQuery.extend(true, {}, options, chart1Options);
+    var chart1 = new Highcharts.Chart(chart1Options);
+    
+    var chart2Options = {
+        chart: {
+          renderTo: 'bodegaGrafico'
+        },
+        title: {
+            text: 'Cantidad de inspecciones realizadas por bodega'
+        },
+        xAxis: {
+            categories: [ <?php echo join($bodegaNombre, ',') ?>]
+        },
+        series: [{
+            type: 'column',
+    
+            name: 'Inspecciones realizadas',
+            data: [ <?php echo join($bodegaCantidad, ',') ?>]
+        }]
+    };
+    chart2Options = jQuery.extend(true, {}, options, chart2Options);
+    var chart1 = new Highcharts.Chart(chart2Options);
+    
+    var chart2Options = {
+        chart: {
+          renderTo: 'materialGrafico'
+        },
+        title: {
+            text: 'Cantidad de inspecciones realizadas a materiales'
+        },
+        xAxis: {
+            categories: [ <?php echo join($materialNombre, ',') ?>]
+        },
+        series: [{
+            type: 'column',
+            name: 'Inspecciones realizadas',
+            data: [ <?php echo join($materialCantidad, ',') ?>]
+        }]
+    };
+    chart2Options = jQuery.extend(true, {}, options, chart2Options);
+    var chart1 = new Highcharts.Chart(chart2Options);
+    
+    var chart2Options = {
+        chart: {
+          renderTo: 'naveGrafico'
+        },
+        title: {
+            text: 'Cantidad de inspecciones realizadas por nave'
+        },
+        xAxis: {
+            categories: [ <?php echo join($naveNombre, ',') ?>]
+        },
+        series: [{
+            type: 'column',
+            name: 'Inspecciones realizadas',
+            data: [ <?php echo join($naveCantidad, ',') ?>]
+        }]
+    };
+    chart2Options = jQuery.extend(true, {}, options, chart2Options);
+    var chart1 = new Highcharts.Chart(chart2Options);
+    
+    var chart2Options = {
+        chart: {
+          renderTo: 'inspectorGrafico'
+        },
+        title: {
+            text: 'Cantidad de inspecciones realizadas por inspector'
+        },
+        xAxis: {
+            categories: [ <?php echo join($inspectorNombre, ',') ?>]
+        },
+        series: [{
+            type: 'column',
+            name: 'Inspecciones realizadas',
+            data: [ <?php echo join($inspectorCantidad, ',') ?>]
+        }]
+    };
+    chart2Options = jQuery.extend(true, {}, options, chart2Options);
+    var chart1 = new Highcharts.Chart(chart2Options);
+    
+    var chart2Options = {
+        chart: {
+          renderTo: 'inspeccionGrafico'
+        },
+        title: {
+            text: 'Cantidad de inspecciones realizadas por tipo de inspeccion'
+        },
+        xAxis: {
+            categories: [ <?php echo join($inspeccionNombre, ',') ?>]
+        },
+        series: [{
+            type: 'column',
+            name: 'Inspecciones realizadas',
+            data: [ <?php echo join($inspeccionCantidad, ',') ?>]
+        }]
+    };
+    chart2Options = jQuery.extend(true, {}, options, chart2Options);
+    var chart1 = new Highcharts.Chart(chart2Options);
+    
+    
+});
+
+
+       </script>
+       
+        
+<?php $title = "Estadisticas globales" ?>
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+<div class="row">
+    <div class="col-lg-4">
+         <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Cantidad de inspecciones realizadas por inspector
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id='inspectorGrafico'>
+                        </div>
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <button href="#" class="btn btn-default btn-sm"><i class="fa fa-bookmark"></i> Ver datos</button>
+                        </div>
+                     
+         </div>
+    </div>
+    
+    
+       
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Cantidad de inspecciones por tipo de inspeccion
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id='inspeccionGrafico'>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <button href="#" class="btn btn-default btn-sm"><i class="fa fa-bookmark"></i> Ver datos</button>
+                        </div>
+         </div>
+    </div> 
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Cantidad de inspecciones por cliente
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id='clienteGrafico' >
+                            </div>
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <button href="#" class="btn btn-default btn-sm"><i class="fa fa-bookmark"></i> Ver datos</button>
+                        </div>
+         </div>
+    </div> 
+</div>
+<div class="row">
+    <div class="col-lg-4">
+         <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Cantidad de inspecciones por bodega
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id='bodegaGrafico'>
+                            </div>
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <button href="#" class="btn btn-default btn-sm"><i class="fa fa-bookmark"></i> Ver datos</button>
+                        </div>
+         </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Cantidad de inspecciones por material
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id='materialGrafico'>
+                            </div>
+                            
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <button href="#" class="btn btn-default btn-sm"><i class="fa fa-bookmark"></i> Ver datos</button>
+                        </div>
+         </div>
+    </div> 
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Cantidad de inspecciones por nave
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id='naveGrafico' >
+                            </div>
+                           
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <button href="#" class="btn btn-default btn-sm"><i class="fa fa-bookmark"></i> Ver datos</button>
+                        </div>
+         </div>
+    </div> 
+</div>
+</div>
+

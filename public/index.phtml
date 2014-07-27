@@ -1,0 +1,48 @@
+<?php
+ // module/Album/view/album/album/index.phtml:
+
+ $title = 'BIENVENIDO';
+ $subtitle= 'CONEXPORT GPS 1.0';
+ $this->headTitle($title);
+ ?>
+
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+<?php 
+                        if($this->identity()){
+                            $iden = $this->identity();
+                            echo "<h1>Bienvenido ".$iden->nombre." ".$iden->apellido."</h1><br/>";
+                            echo "Estas identificado con el correo ".$iden->correo;
+                            echo "<hr>";
+                        }else {
+                            return $this->redirect()->toUrl($this->basePath("admin/login"));
+                        }
+                        
+
+
+
+
+?>
+<p>
+    <a class="btn btn-success" href="<?php $this->basePath("admin/login/cerrar")?>">Cerrar sesión</a>
+</p>
+
+
+
+
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            

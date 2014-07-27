@@ -1,0 +1,91 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle($this->titulo. $this->translate('Conexport GPS GESTION PRODUCTION SYSTEM '))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => '/img/conexport.ico', 'href' => $this->basePath() . '/img/conexport.ico'))
+                        ->prependStylesheet($this->basePath() . '/admin/css/sb-admin.css')
+                        ->prependStylesheet($this->basePath() . '/admin/css/plugins/timeline/timeline.css')
+                        ->prependStylesheet($this->basePath() . '/admin/css/plugins/morris/morris-0.4.3.min.css')
+                        ->prependStylesheet($this->basePath() . '/admin/font-awesome/css/font-awesome.css')
+                        ->prependStylesheet($this->basePath() . '/admin/css/bootstrap.min.css')       
+                        
+                        
+                        
+                                    
+                ?>
+
+        <!-- Scripts -->
+     
+
+    </head>
+    <body>
+        
+        
+           
+     <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ingreso de usuario</h3>
+                    </div>
+                    <div class="panel-body">
+                        
+                        
+                        
+                        
+                        
+                        <?php echo $this->content; ?>
+                        
+                        
+                        
+                        <!--<form role="form">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                              <!--  <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                            </fieldset>
+                        </form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+        
+        
+        
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath() . '/admin/js/demo/dashboard-demo.js')
+            ->prependFile($this->basePath() . '/admin/js/sb-admin.js')
+            ->prependFile($this->basePath() . '/admin/js/plugins/morris/morris.js')
+            ->prependFile($this->basePath() . '/admin/js/plugins/morris/raphael-2.1.0.min.js')
+            ->prependFile($this->basePath() . '/admin/js/plugins/metisMenu/jquery.metisMenu.js')
+            ->prependFile($this->basePath() . '/admin/js/bootstrap.min.js')
+            ->prependFile($this->basePath() . '/admin/js/jquery-1.10.2.js')     
+            
+            
+        ; ?>
+        
+    </body>
+</html>

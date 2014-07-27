@@ -1,0 +1,15 @@
+<?php
+//Comprobamos si nos llega la sesión correcta o no, esto se puede hacer de distintas formas
+if(!is_string($this->datos)){
+var_dump($this->datos->id_usuario);
+echo "Bienvenido ".$this->datos->nombre." ".$this->datos->apellido."<br/>";
+echo "Estas identificado con ".$this->datos->correo;
+?>
+<p>
+    <a class="btn btn-success" href="<?php $this->basePath("admin/login/cerrar")?>">Cerrar sesión</a>
+</p>  
+<?php 
+}else{
+ echo $this->datos;
+}
+?>

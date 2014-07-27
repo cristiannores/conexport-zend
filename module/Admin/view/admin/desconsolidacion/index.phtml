@@ -1,0 +1,232 @@
+
+ <?php
+ // module/Album/view/album/album/index.phtml:
+
+ $title = 'Reporte desconsolidacion';
+ $subtitle= 'Selecciona reporte';
+ $this->headTitle($title);
+ ?>
+ 
+ 
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+                        <p>Selecciones filtros para realizar la busqueda de su reporte: </p>
+                        <div class="row">
+                            <?php
+                                $form->setAttribute('action', $this->url('admin-reporte-desconsolidacion', array('action' => 'index')));
+                                $form->setAttribute('role','form');
+                                $form->setAttribute('class','form-horizontal');
+                                $form->prepare();
+                                echo $this->form()->openTag($form);
+                            ?>  
+                            <div class="col-lg-12">
+                                <div class="col-lg-3">
+                                   <!-- Filtro  -->
+                                   <div class="form-group">
+                                        <label for="contenedor" class="col-sm-3 control-label">Contenedor</label>
+                                        <div class="col-sm-9">
+                                            <?php
+                                                $contenedor = $form->get('contenedor');
+                                                echo $this->formInput($contenedor);
+                                                echo $this->formElementErrors($contenedor);
+                                            ?>
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                </div>
+                                <div class="col-lg-3">
+                                   <!-- Filtro  -->
+                                   <div class="form-group">
+                                        <label for="fecha" class="col-sm-3 control-label">Fecha</label>
+                                        <div class="col-sm-9">
+                                            <?php
+                                                $fecha = $form->get('fecha');
+                                                echo $this->formDate($fecha);
+                                                echo $this->formElementErrors($fecha);
+                                            ?>
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                </div>
+                                <div class="col-lg-3">
+                                   <!-- Filtro  -->
+                                   <div class="form-group">
+                                        <label for="turno" class="col-sm-3 control-label">Turno</label>
+                                        <div class="col-sm-9">
+                                            <?php
+                                                $turno = $form->get('turno');
+                                                echo $this->formSelect($turno);
+                                                echo $this->formElementErrors($turno);
+                                            ?>
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                </div>
+                                <div class="col-lg-3">
+                                  
+                                    <?php
+                                        $submit = $form->get('submit');
+                                        echo $this->formInput($submit);
+                                        echo $this->formElementErrors($submit);
+                                    ?>
+                                  
+                                </div>
+                               
+                            </div>
+                            <?php echo $this->form()->closeTag($form);?>
+                        </div>
+                        <hr>
+        
+                    
+
+      <!-- Table -->
+                    <div class="table-responsive">
+          
+                <table class="table table-hover table-condensed table-bordered ">
+                    <thead class="">
+                        <tr>
+                            <th rowspan="4" class="text-center">Cliente</th>
+                            <th rowspan="4" class="text-center">Producto</th>
+                            <th rowspan="4" class="text-center">ID Contenedor</th>
+                            <th rowspan="4" class="text-center">Lote</th>
+                            <tr>
+                                <th colspan="4" class="text-center">Daños implementacion</th>
+                                <th colspan="2" class="text-center">Daños Piezas</th>
+                                <th rowspan="3" class="text-center">Observaciones</th>
+                                <th rowspan="3" class="text-center">&nbsp;</th>
+                            </tr>
+                            <tr>
+                                <th colspan="2" class="text-center">Origen</th>
+                                <th colspan="2" class="text-center">Desconsolidacion</th>
+                                <th  rowspan="2" class="text-center">Origen</th>
+                                <th  rowspan="2"  class="text-center">Desconsolidacion</th>
+                            </tr>
+                            <tr>
+                                <th class="text-center">zuncho</th>
+                                <th class="text-center">taco</th>
+                                <th class="text-center">zuncho</th>
+                                <th class="text-center">taco</th>                                
+                            </tr>
+                            
+                            
+                        </tr>
+                        
+                            
+                          
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <?php if(isset($this->paginator)){foreach ($this->paginator as $m) : ?>
+                            <tr>
+
+                                <td><?php echo $this->escapeHtml($m->cliente);?></td>
+                                <td><?php echo $this->escapeHtml($m->producto);?></td>
+                                <td><?php echo $this->escapeHtml($m->id_contenedor);?></td>
+                                <td><?php echo $this->escapeHtml($m->lote);?></td>
+                                <td><?php echo $this->escapeHtml($m->imp_o_zcho);?></td>
+                                <td><?php echo $this->escapeHtml($m->imp_o_taco);?></td>
+                                <td><?php echo $this->escapeHtml($m->imp_d_zcho);?></td>
+                                <td><?php echo $this->escapeHtml($m->imp_d_taco);?></td>
+                                <td><?php echo $this->escapeHtml($m->imp_piezas_o);?></td>
+                                <td><?php echo $this->escapeHtml($m->imp_piezas_d);?></td>
+                                <td><?php echo $this->escapeHtml($m->observaciones);?></td>
+                               
+                                <td>
+                                   <a class="btn btn-primary" data-toggle="modal" data-target=".<?php echo $m->id_cont?>"  
+                                       href="<?php echo $this->url('admin-reporte-desconsolidacion', array(
+                            'action' => 'imagenes',
+                            'id'=> '0' ,
+                            'reporte' => 'imagenes',
+                            'fecha' => 0,
+                            'turno' => 0,
+                            'contenedor' => $m->id_cont
+                            
+                            ))?>">Ver Imagenes</a>
+                                    
+                                </td>
+                            </tr>
+                            <div class="modal fade <?php echo $m->id_cont?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    
+                                        <div class="modal-dialog modal-personalizado">
+                                      <div class="modal-content">
+                                          <div class = "modal-header">
+                                             
+                                          </div>
+                                          <div class="modal-body">
+                                        
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            
+                                          </div>
+                                          </div>
+                                    </div>
+                                       
+                            </div>    
+                            <?php endforeach;};?>
+                            
+                           
+                    </tbody>
+                 </table>      
+                        <?php if(isset($this->paginator)){echo $this->paginationControl(
+                                    // the paginator object
+                                    $this->paginator,
+                                    // the scrolling style
+                                    'sliding',
+                                    // the partial to use to render the control
+                                    array('partial/paginator.phtml', 'Admin'),
+                                    // the route to link to when a user clicks a control link
+                                    array(
+                                        'route' => 'admin-reporte-consolidacion'
+                                    )
+                        ) ;}
+                        if($this->fecha == ''){
+                           $this->fecha = 0; 
+                        }
+                        if($this->contenedor == ''){
+                           $this->contenedor = 0; 
+                        }
+                        if($this->turno == ''){
+                           $this->turno = 0; 
+                        }
+                            ?> 
+                        <hr>
+                        <center><a href="<?php echo $this->url('admin-reporte-desconsolidacion', array(
+                            'action' => 'index',
+                            'id'=> '0' ,
+                            'reporte' => 'excel',
+                            'fecha' => $this->fecha,
+                            'turno' => $this->turno,
+                            'contenedor' => $this->contenedor
+                            
+                            ))?>" class="btn btn-success">EXPORTAR A EXCEL</a></center>
+                            
+           </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+                                <!-- /.col-lg-6 (nested) -->
+</div>     
+        
+            
+            
+      
+ 
+            
+            
+            
+      

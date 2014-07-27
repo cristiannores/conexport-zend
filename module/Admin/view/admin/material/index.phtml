@@ -1,0 +1,83 @@
+
+ <?php
+ // module/Album/view/album/album/index.phtml:
+
+ $title = 'Materiales';
+ $subtitle= 'Materiales actuales';
+ $this->headTitle($title);
+ ?>
+ 
+ 
+<div class="panel-heading">
+    <?php echo $this->escapeHtml($title); ?>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+             <!-- Default panel contents -->
+                <div class="panel-heading"><?php echo $this->escapeHtml($subtitle); ?> </div>
+                    <div class="panel-body">
+                        <p>Lista de materiales actualmente registrados. Eliga editar o Eliminar</p>
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Buscar...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+        <hr>
+        <a class="btn btn-success btn-sm" href="<?php echo $this->url('admin-material', array('action'=>'agregar'));?>">Agregar nuevo material</a>
+                    </div>
+
+      <!-- Table -->
+                    <div class="table-responsive">
+          
+                <table class="table  table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Codigo</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <?php foreach ($this->paginator as $m) : ?>
+                            <tr>
+
+                                <td><?php echo $this->escapeHtml($m->id_material);?></td>
+                                <td><?php echo $this->escapeHtml($m->nombre);?></td>
+                                <td><?php echo $this->escapeHtml($m->codigo);?></td>
+                                <td>
+                                    <a class="btn btn-warning btn-xs" href="<?php echo $this->url('admin-material',
+                                        array('action'=>'editar', 'id' => $m->id_material));?>">Editar</a>
+                                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url('admin-material',
+                                        array('action'=>'borrar', 'id' => $m->id_material));?>">Borrar</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                    </tbody>
+                 </table>        
+                            <?php echo $this->paginationControl(
+                                    // the paginator object
+                                    $this->paginator,
+                                    // the scrolling style
+                                    'sliding',
+                                    // the partial to use to render the control
+                                    array('partial/paginator.phtml', 'Admin'),
+                                    // the route to link to when a user clicks a control link
+                                    array(
+                                        'route' => 'admin-material'
+                                    )
+                                );
+                            ?> 
+                    </div>
+                </div>
+        </div>
+    </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                
+                                <!-- /.col-lg-6 (nested) -->
+</div>     
