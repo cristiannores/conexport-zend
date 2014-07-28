@@ -1,4 +1,4 @@
-PASOS INTALACION DE SOFTWARE CONEXPORT.
+### PASOS INTALACION DE SOFTWARE CONEXPORT.
 ==========================================
 
 INSTALAR LOS SOFTWARE, PHP, GIT, COMPOSER, (WAMP O LAMP).
@@ -10,11 +10,8 @@ OPCION 1
 cd my/project/dir
 
     git clone git://github.com/cristiannores/conexport-zend.git
-
     cd conexport-zend
-
     php composer.phar self-update
-
     php composer.phar install
 
 
@@ -22,13 +19,10 @@ OPCION 2
 
 -   DESCARGAR TODO EL REPOSITORIO Y COPIARLO EN LA CARPETA
 
-
-    cd conexport-zend
-
-    php composer.phar self-update
-
-
-    php composer.phar install
+	
+		cd conexport-zend
+		php composer.phar self-update
+		php composer.phar install
 
 
 
@@ -36,12 +30,10 @@ COPIAR LOS ARCHIVOS DE LA BD CONEXPORT.SQL Y CREAR UNA BD CON USUARIO Y PASSWORD
 
 CONFIGURAR LOS ARCHIVOS DE LA CARPETA CONFIG PARA LA BD Y LOS USUARIOS, ADEMAS DEL FILE-MANAGER PARA LA CARPETA DE UPLOADS DE ARCHIVOS A \DATA\UPLOADS 
 
-
-USUARIO INICIAL
-
-usuario : juanperez@gmail.com
-
-clave   : abcd1234
+	
+	-	USUARIO 
+		usuario : juanperez@gmail.com
+		clave   : abcd1234
 
 
 
