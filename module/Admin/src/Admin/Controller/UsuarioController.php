@@ -148,7 +148,7 @@ class UsuarioController extends AbstractActionController
          $request = $this->getRequest();
          if ($request->isPost()) {
              
-             $form->setInputFilter($usuario->getInputFilter($this->getServiceLocator()));
+             $form->setInputFilter($usuario->getInputFilter());
              
              $form->setData($request->getPost());
              
