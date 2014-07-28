@@ -112,7 +112,7 @@ class ClienteController extends AbstractActionController
          $request = $this->getRequest();
          if ($request->isPost()) {
              
-             $form->setInputFilter($cliente->getInputFilter());
+             $form->setInputFilter($cliente->getInputFilter($this->getServiceLocator()));
              
              $form->setData($request->getPost());
 
