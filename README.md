@@ -28,10 +28,32 @@ OPCION 2
 
 COPIAR LOS ARCHIVOS DE LA BD CONEXPORT.SQL Y CREAR UNA BD CON USUARIO Y PASSWORD
 
-CONFIGURAR LOS ARCHIVOS DE LA CARPETA CONFIG PARA LA BD Y LOS USUARIOS, ADEMAS DEL FILE-MANAGER PARA LA CARPETA DE UPLOADS DE ARCHIVOS A \DATA\UPLOADS 
+#### CONFIGURAR LOS ARCHIVOS DE LA CARPETA CONFIG
 
+##### \config\config.php
 	
-	-	USUARIO 
+	'db' => array(
+	         'driver'         => 'Pdo',
+	         'dsn'            => 'mysql:dbname=conexport1;host=localhost', ->> MODIFICAR
+	         'driver_options' => array(
+	             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+	         ),
+	     ),
+
+##### \config\local.php
+
+	'db' => array(
+	         'username' => 'prueba',     ->> MODIFICAR
+	         'password' => 'prueba',     ->> MODIFICAR
+	     ), 
+	     
+##### \config\file.manager.local.php
+
+	'file_manager'  =>  array(
+	        'dir'   =>  'C:\wamp\www\conexport\data\uploads',   ->> MODIFICAR
+	    )
+		
+##### USUARIO 
 		usuario : juanperez@gmail.com
 		clave   : abcd1234
 
